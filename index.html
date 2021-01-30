@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,38 +12,61 @@
             const random = Math.floor(Math.random() * words.length);
             return words[random];
         }
-        
-        
+
+
         function playRound(computerSelection, playerSelection) {
             let caseInsensitive = playerSelection.toLowerCase();
             console.log(caseInsensitive);
             console.log(computerSelection);
-            if(caseInsensitive == "rock" && computerSelection == "paper") {
-                 return "You lose! Paper beats Rock";
-            } else if(caseInsensitive === "rock" && computerSelection === "scissors") {
-                 return "You win! Rock beats Scissors";
-            } else if(caseInsensitive === "paper" && computerSelection === "scissors") {
-                 return "You lose! Scissors beat Paper";
-            } else if(caseInsensitive === "paper" && computerSelection === "rock") {
-                 return "You win! Paper beats rock";
-            } else if(caseInsensitive === "scissors" && computerSelection === "rock") {
-                 return "You lose! Rock beats Scissors";
-            } else if(caseInsensitive === "scissors" && computerSelection === "paper") {
-                 return "You win! Scissors beat paper";
-            } else  {
-                 return "That's a draw!"; 
+            if (caseInsensitive == "rock" && computerSelection == "paper") {
+                return "You lose! Paper beats Rock";
+            } else if (caseInsensitive === "rock" && computerSelection === "scissors") {
+                return "You win! Rock beats Scissors";
+            } else if (caseInsensitive === "paper" && computerSelection === "scissors") {
+                return "You lose! Scissors beat Paper";
+            } else if (caseInsensitive === "paper" && computerSelection === "rock") {
+                return "You win! Paper beats rock";
+            } else if (caseInsensitive === "scissors" && computerSelection === "rock") {
+                return "You lose! Rock beats Scissors";
+            } else if (caseInsensitive === "scissors" && computerSelection === "paper") {
+                return "You win! Scissors beat paper";
+            } else {
+                return "That's a draw!";
             }
         }
 
-        
-        const playerSelection = "scissoRs";
-        const computerSelection = computerPlay();
-        
+        function game() {
+            let compScore = 0;
+            let playerScore = 0;
+            for (let i = 0; i < 5; i++) {
+                const playerSelection = prompt("Enter rock, paper or scissors", "");
+                const computerSelection = computerPlay();
+                const result = playRound(computerSelection, playerSelection);
+                console.log(result);
+                if (result.includes("lose")) {
+                    compScore++;
+                } else if (result.includes("win")) {
+                    playerScore++;
+                }
+            }
 
-        console.log(playRound(computerSelection, playerSelection));
+            console.log(`Computer: ${compScore}`);
+            console.log(`You: ${playerScore}`);
+
+            if (compScore > playerScore) {
+                console.log('You lose');
+            } else {
+                console.log('You win');
+            }
+        }
+
+        console.log(game());
+
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
